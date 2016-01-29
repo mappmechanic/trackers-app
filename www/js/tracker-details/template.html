@@ -1,0 +1,33 @@
+<ion-pane>
+  <ion-header-bar class="bar-balanced">
+    <div class="buttons">
+      <button class="button button-dark" ui-sref="home">Back</button>
+    </div>
+    <h1 class="title">{{trackerInfo.name}}</h1>
+    <div class="buttons">
+      <button class="button button-dark" ng-click="toggleEdit()">{{editButtonLabel}}</button>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+   <ion-list show-delete="shouldShowDelete">
+    <ion-item ng-show="loadingTrackers">
+     	<ion-spinner icon="spiral"></ion-spinner>
+    </ion-item>
+    <ion-item ng-repeat="entry in entriesList track by $index">
+    	<strong>{{entry.value}}</strong> - {{entry.created_at}}
+    	<ion-delete-button class="ion-minus-circled" ng-click="deleteEntry($index,entry.id)"></ion-delete-button>
+    </ion-item>
+   </ion-list>
+   <ion-list>
+    <ion-item class="item item-divider">
+    	Add New Value
+    </ion-item>
+    <ion-item>
+		<input type="number" placeholder="Enter Value for Today" ng-model="newEntry.value">
+    </ion-item>
+   	<ion-item>
+   		<button class="button button-block button-energized" ng-click="addNewEntry()">Add</button>
+   	</ion-item>
+   </ion-list>
+  </ion-content>
+</ion-pane>

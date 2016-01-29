@@ -1,0 +1,34 @@
+<ion-pane>
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">Trackers</h1>
+    <div class="buttons">
+    <button class="button button-dark" ng-click="toggleEdit()">{{editButtonLabel}}</button>
+  </div>
+  </ion-header-bar>
+  <ion-content>
+   <ion-list show-delete="shouldShowDelete">
+   <ion-item class="item item-divider">
+    	Click on a Tracker
+    </ion-item>
+    <ion-item ng-show="loadingTrackers">
+     	<ion-spinner icon="spiral"></ion-spinner>
+    </ion-item>
+    <ion-item ui-sref="tracker({id:tracker.id})" class="item-icon-right" ng-repeat="tracker in trackersList track by $index">
+    	{{tracker.name}}
+    	<ion-delete-button class="ion-minus-circled" ng-click="deleteTracker($index,tracker.id)"></ion-delete-button>
+    	<i class="icon ion-chevron-right"></i>
+    </ion-item>
+   </ion-list>
+   <ion-list>
+    <ion-item class="item item-divider">
+    	Add New Tracker
+    </ion-item>
+    <ion-item>
+		<input type="text" placeholder="Enter Tracker Name" ng-model="newTracker.name">
+    </ion-item>
+   	<ion-item>
+   		<button class="button button-block button-calm" ng-click="addNewTracker()">Add</button>
+   	</ion-item>
+   </ion-list>
+  </ion-content>
+</ion-pane>
